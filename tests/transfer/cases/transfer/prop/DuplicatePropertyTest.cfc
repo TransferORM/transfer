@@ -60,9 +60,8 @@
 	</cfquery>
 	
 	<cfscript>
-		obj = getTransfer().get("prop.PropParent", qID.id);
-		
-		assertEqualsBasic(obj.getIDPropParent(), qID.id);
+		obj = getTransfer().get("prop.PropParent", qID.id[1]);
+		assertEqualsBasic(obj.getIDPropParent(), qID.id[1]);
 	</cfscript>
 </cffunction>
 
