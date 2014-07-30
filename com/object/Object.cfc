@@ -834,7 +834,7 @@ Mark Mandel		11/07/2005		Created
 </cffunction>
 
 <cffunction name="addFunction" hint="add a Custom Function" access="private" returntype="void" output="false">
-	<cfargument name="Function" hint="A Custom Function BO" type="Function" required="Yes">
+	<cfargument name="Function" hint="A Custom Function BO" type="TFunction" required="Yes">
 	<cfscript>
 		ArrayAppend(getFunction(), arguments.function);
 	</cfscript>
