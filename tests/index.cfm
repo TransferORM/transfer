@@ -65,7 +65,7 @@
 		<cfset path = expandPath("/test/resources/defs")>
 
 		<cfif true>
-		<cfdirectory action="list" directory="#path#" name="qDefs" filter="*.transfer">
+		<cfdirectory action="list" directory="#path#" name="qDefs" filter="*.transfer.cfm">
 
 		<cfloop query="qDefs">
 			<cffile action="delete" file="#path#/#name#">

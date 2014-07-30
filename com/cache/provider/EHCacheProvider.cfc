@@ -84,9 +84,13 @@ Mark Mandel		02/11/2009		Created
 			_Thread.currentThread().setContextClassLoader(currentClassloader);
 
 			setDefaultCache(configHelper.createDefaultCache());
-
-			proxy = getJavaLoader().create("com.compoundtheory.coldfusion.cfc.CFCDynamicProxy").createInstance(this, interfaces);
-
+			
+			if (server.coldfusion.productname contains "Railo") {
+				var proxy = createDynamicProxy(this, interfaces);
+			} else {
+				var proxy = getJavaLoader().create("com.compoundtheory.coldfusion.cfc.CFCDynamicProxy").createInstance(this, interfaces);
+			}
+			
 			setProxy(proxy);
 
 			return this;
