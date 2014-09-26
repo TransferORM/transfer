@@ -68,6 +68,8 @@ Mark Mandel		16/05/2006		Created
 		<cflock name="transfer.facade.getAfterCreateObserverCollection.#getScopeIdentityHashCode()#" timeout="60" throwontimeout="true">
 			<cfif NOT hasAfterCreateObserverCollection(argumentCollection=arguments)>
 				<cfset setAfterCreateObserverCollection(createObservable("AfterCreateObserverCollection"), arguments.class)>
+				<!--- adding here because under load, we occasionally get errors between the time we release the lock and the time we run getScopePlace() at the end of the method --->
+				<cfreturn getScopePlace(argumentCollection=arguments).AfterCreateObserverCollection />
 			</cfif>
 		</cflock>
 	</cfif>
@@ -87,6 +89,8 @@ Mark Mandel		16/05/2006		Created
 		<cflock name="transfer.facade.getAfterDeleteObserverCollection.#getScopeIdentityHashCode()#" timeout="60" throwontimeout="true">
 			<cfif NOT hasAfterDeleteObserverCollection(argumentCollection=arguments)>
 				<cfset setAfterDeleteObserverCollection(createObservable("AfterDeleteObserverCollection"), arguments.class)>
+				<!--- adding here because under load, we occasionally get errors between the time we release the lock and the time we run getScopePlace() at the end of the method --->
+				<cfreturn getScopePlace(argumentCollection=arguments).AfterDeleteObserverCollection />
 			</cfif>
 		</cflock>
 	</cfif>
@@ -106,10 +110,12 @@ Mark Mandel		16/05/2006		Created
 		<cflock name="transfer.facade.getAfterUpdateObserverCollection.#getScopeIdentityHashCode()#" timeout="60" throwontimeout="true">
 			<cfif NOT hasAfterUpdateObserverCollection(argumentCollection=arguments)>
 				<cfset setAfterUpdateObserverCollection(createObservable("AfterUpdateObserverCollection"), arguments.class)>
+				<!--- adding here because under load, we occasionally get errors between the time we release the lock and the time we run getScopePlace() at the end of the method --->
+				<cfreturn getScopePlace(argumentCollection=arguments).AfterUpdateObserverCollection />
 			</cfif>
 		</cflock>
 	</cfif>
-	<cfreturn getScopePlace(arguments.class).AfterUpdateObserverCollection />
+	<cfreturn getScopePlace(argumentCollection=arguments).AfterUpdateObserverCollection />
 </cffunction>
 
 <cffunction name="hasAfterUpdateObserverCollection" hint="Whether it exists in the scope or not" access="public" returntype="boolean" output="false">
@@ -122,9 +128,11 @@ Mark Mandel		16/05/2006		Created
 <cffunction name="getBeforeCreateObserverCollection" access="public" returntype="transfer.com.events.collections.AbstractBaseObserverCollection" output="false">
 	<cfargument name="class" hint="the class in question" type="string" required="Yes">
 	<cfif NOT hasBeforeCreateObserverCollection(argumentCollection=arguments)>
-	<cflock name="transfer.facade.getBeforeCreateObserverCollection.#getScopeIdentityHashCode()#" timeout="60" throwontimeout="true">
+		<cflock name="transfer.facade.getBeforeCreateObserverCollection.#getScopeIdentityHashCode()#" timeout="60" throwontimeout="true">
 			<cfif NOT hasBeforeCreateObserverCollection(argumentCollection=arguments)>
 				<cfset setBeforeCreateObserverCollection(createObservable("BeforeCreateObserverCollection"), arguments.class)>
+				<!--- adding here because under load, we occasionally get errors between the time we release the lock and the time we run getScopePlace() at the end of the method --->
+				<cfreturn getScopePlace(argumentCollection=arguments).BeforeCreateObserverCollection />
 			</cfif>
 		</cflock>
 	</cfif>
@@ -144,6 +152,8 @@ Mark Mandel		16/05/2006		Created
 		<cflock name="transfer.facade.getBeforeUpdateObserverCollection.#getScopeIdentityHashCode()#" timeout="60" throwontimeout="true">
 			<cfif NOT hasBeforeUpdateObserverCollection(argumentCollection=arguments)>
 				<cfset setBeforeUpdateObserverCollection(createObservable("BeforeUpdateObserverCollection"), arguments.class)>
+				<!--- adding here because under load, we occasionally get errors between the time we release the lock and the time we run getScopePlace() at the end of the method --->
+				<cfreturn getScopePlace(argumentCollection=arguments).BeforeUpdateObserverCollection />
 			</cfif>
 		</cflock>
 	</cfif>
@@ -163,6 +173,8 @@ Mark Mandel		16/05/2006		Created
 		<cflock name="transfer.facade.getBeforeDeleteObserverCollection.#getScopeIdentityHashCode()#" timeout="60" throwontimeout="true">
 			<cfif NOT hasBeforeDeleteObserverCollection(argumentCollection=arguments)>
 				<cfset setBeforeDeleteObserverCollection(createObservable("BeforeDeleteObserverCollection"), arguments.class)>
+				<!--- adding here because under load, we occasionally get errors between the time we release the lock and the time we run getScopePlace() at the end of the method --->
+				<cfreturn getScopePlace(argumentCollection=arguments).BeforeDeleteObserverCollection />
 			</cfif>
 		</cflock>
 	</cfif>
@@ -182,6 +194,8 @@ Mark Mandel		16/05/2006		Created
 		<cflock name="transfer.facade.getAfterDiscardObserverCollection.#getScopeIdentityHashCode()#" timeout="60" throwontimeout="true">
 			<cfif NOT hasAfterDiscardObserverCollection(argumentCollection=arguments)>
 				<cfset setAfterDiscardObserverCollection(createObservable("AfterDiscardObserverCollection"), arguments.class)>
+				<!--- adding here because under load, we occasionally get errors between the time we release the lock and the time we run getScopePlace() at the end of the method --->
+				<cfreturn getScopePlace(argumentCollection=arguments).AfterDiscardObserverCollection />
 			</cfif>
 		</cflock>
 	</cfif>
@@ -201,6 +215,8 @@ Mark Mandel		16/05/2006		Created
 		<cflock name="transfer.facade.getAfterNewObserverCollection.#getScopeIdentityHashCode()#" timeout="60" throwontimeout="true">
 			<cfif NOT hasAfterNewObserverCollection(argumentCollection=arguments)>
 				<cfset setAfterNewObserverCollection(createObservable("AfterNewObserverCollection"), arguments.class)>
+				<!--- adding here because under load, we occasionally get errors between the time we release the lock and the time we run getScopePlace() at the end of the method --->
+				<cfreturn getScopePlace(argumentCollection=arguments).AfterNewObserverCollection />
 			</cfif>
 		</cflock>
 	</cfif>
