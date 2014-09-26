@@ -1,3 +1,0 @@
-<cfcomponent output="false">
-
-</cfcomponent>
