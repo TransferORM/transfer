@@ -33,6 +33,7 @@ Mark Mandel		02/11/2009		Created
 		var jars = 0;
 		var configuration = 0;
 		var ConfigurationFactory = 0;
+		var PropertyConfigurator = 0;
 		var configHelper = 0;
 		var interfaces = ["net.sf.ehcache.event.CacheEventListener"];
 		var _Thread = createObject("java", "java.lang.Thread"); //using 'Thread' breaks CFB
@@ -77,6 +78,8 @@ Mark Mandel		02/11/2009		Created
 			ConfigurationFactory = getJavaLoader().create("net.sf.ehcache.config.ConfigurationFactory");
 
 			configuration = ConfigurationFactory.parseConfiguration(getJavaLoader().create("java.io.File").init(expandPath(arguments.config)));
+			//In ehcache >= 2.5.0, no two caches can have the same name so we randomize to allow recreating Transfer + ehCache
+			configuration.setName("transferCacheManager#randRange(100000,999999)#");
 
 			setEHCacheManager(getJavaLoader().create("net.sf.ehcache.CacheManager").init(configuration));
 
